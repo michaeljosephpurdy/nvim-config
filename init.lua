@@ -428,7 +428,7 @@ cmp.setup {
 -- vim: ts=2 sts=2 sw=2 et
 
 -- load personal config
-require('purdy')
+require('purdy').load()
 
 -- load work config
-require('michpurd')
+require('michpurd').load()

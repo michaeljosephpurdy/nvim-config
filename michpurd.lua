@@ -1,3 +1,6 @@
+local michpurd = {}
 
+function michpurd.load()
+end
 
-michpurd = 'michpurd loaded'
+return michpurd
