@@ -69,6 +69,8 @@ require('packer').startup(function(use)
   if is_bootstrap then
     require('packer').sync()
   end
+
+  use {"ellisonleao/glow.nvim"}
 end)
 
 -- When we are bootstrapping a configuration, it doesn't
@@ -188,6 +190,14 @@ require('gitsigns').setup {
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
+    layout_strategy = 'vertical',
+    layout_config = {
+      vertical = {
+        width = 0.85,
+        height = 0.85,
+        preview_height = 0.75,
+      },
+    },
     mappings = {
       i = {
         ['<C-u>'] = false,
@@ -211,7 +221,9 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })
 
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, {
+  desc = '[S]earch [F]iles',
+})
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
@@ -423,6 +435,7 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
