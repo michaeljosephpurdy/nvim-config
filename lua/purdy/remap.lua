@@ -18,8 +18,10 @@ local normal_mode = {
     { 'N', 'Nzzzv' },
     -- yank this line to system clipboard
     { '<Leader>y', 'V"*y' },
+    -- copy entire file
+    { '<Leader>Y', 'ggVG"*y' },
     -- paste from system clipboard
-    { '<Leader>p', '*p' },
+    { '<Leader>p', '"*P' },
 }
 
 local visual_mode = {
