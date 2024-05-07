@@ -8,6 +8,8 @@ local insert_mode = {
 }
 
 local normal_mode = {
+  -- disable q: because I always hit it by accident
+  { 'q:', '' },
   -- fix escape mappings
   { '<ESC>', '' },
   { '<Space><Space>', '<ESC>' },
