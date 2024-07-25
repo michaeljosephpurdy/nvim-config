@@ -16,8 +16,33 @@ require('mason-lspconfig').setup({
     'jdtls',
   },
   handlers = {
-    lsp_zero.default_setup,
+    ["lua_ls"] = function ()
+        require('lspconfig').lua_ls.setup({
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = {'vim'}
+                    }
+                }
+            }
+        })
+    end,
+    ['jdtls'] = function()
+    end,
+    ['tsserver'] = function()
+      lsp_zero.default_setup()
+    end,
+    function (server_name) -- default handler (optional)
+      lsp_zero.default_setup()
+    end,
   },
+})
+
+require('lspconfig').jdtls.setup({
+})
+
+require('lspconfig').tsserver.setup({
+    lsp_zero.default_setup()
 })
 
 local cmp = require('cmp')

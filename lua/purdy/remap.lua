@@ -24,6 +24,14 @@ local normal_mode = {
   { '<Leader>Y', 'ggVG"*y' },
   -- paste from system clipboard
   { '<Leader>p', '"*P' },
+  -- split manipulation
+  { '<Leader>we', ':vsplit<Enter>' }, -- vertical split
+  { '<Leader>ww', ':split<Enter>' }, -- horizontal split
+  { '<Leader>wk', '<C-w>k' }, -- move up
+  { '<Leader>wj', '<C-w>j' }, -- move down
+  { '<Leader>wh', '<C-w>h' }, -- move left
+  { '<Leader>wl', '<C-w>l' }, -- move right
+  { '<Leader>wq', '<C-w>c' }, -- close split
 }
 
 local visual_mode = {
