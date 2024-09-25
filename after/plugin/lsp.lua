@@ -1,9 +1,19 @@
 local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  lsp_zero.default_keymaps({ buffer = bufnr })
+  local set_lsp_keymap = function(key, fn, desc)
+    vim.keymap.set({ 'n', 'v' }, '<leader>c'..key, fn, { buffer = bufnr, desc = desc })
+  end
+  set_lsp_keymap('a', vim.lsp.buf.code_action, '[c]ode - [a]ction')
+  set_lsp_keymap('f', vim.lsp.buf.format, '[c]ode - [f]ormat')
+  set_lsp_keymap('R', vim.lsp.buf.rename, '[c]ode - [R]ename symbol')
+  set_lsp_keymap('k', vim.lsp.buf.hover, '[c]ode - show information')
+  set_lsp_keymap('d', vim.lsp.buf.definition, '[c]ode - jump to [d]efinition')
+  set_lsp_keymap('D', vim.lsp.buf.declaration, '[c]ode - jump to [d]eclaration')
+  set_lsp_keymap('i', vim.lsp.buf.implementation, '[c]ode - jump to [i]mplementation')
+  set_lsp_keymap('o', vim.lsp.buf.type_definition, '[c]ode - jump to type definition')
+  set_lsp_keymap('r', vim.lsp.buf.references, '[c]ode - list all [r]eferences')
+  set_lsp_keymap('s', vim.lsp.buf.signature_help, '[c]ode - show [s]ignature')
 end)
 
 --
