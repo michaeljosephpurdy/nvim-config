@@ -13,6 +13,7 @@ local normal_mode = {
   -- fix escape mappings
   { '<ESC>', '' },
   { '<Space><Space>', '<ESC>' },
+  { '<leader>e', ':lua vim.diagnostic.open_float()<Enter>' },
   -- open up netrw
   { '<Leader>pv', vim.cmd.Ex },
   -- keep focus in middle of buffer when going through search results

@@ -1,5 +1,5 @@
 vim.keymap.set('n', '<leader>gs', vim.cmd.Git)
-vim.keymap.set('n', '<leader>gD', function()
+vim.keymap.set('n', '<leader>gd', function()
   vim.cmd.Git('diff')
 end)
 vim.keymap.set('n', '<leader>gb', function()
