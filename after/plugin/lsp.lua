@@ -20,7 +20,7 @@ end)
 require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {
-    'tsserver',
+    'ts_ls',
     'lua_ls',
     'eslint',
     'jdtls',
@@ -39,7 +39,7 @@ require('mason-lspconfig').setup({
     end,
     ['jdtls'] = function()
     end,
-    ['tsserver'] = function()
+    ['ts_ls'] = function()
       lsp_zero.default_setup()
     end,
     function (server_name) -- default handler (optional)
@@ -51,7 +51,7 @@ require('mason-lspconfig').setup({
 require('lspconfig').jdtls.setup({
 })
 
-require('lspconfig').tsserver.setup({
+require('lspconfig').ts_ls.setup({
     lsp_zero.default_setup()
 })
 

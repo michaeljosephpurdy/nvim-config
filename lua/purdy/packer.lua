@@ -14,10 +14,8 @@ return require('packer').startup(function(use)
   use({
     'rose-pine/neovim',
     as = 'rose-pine',
-    config = function()
-        set_colorscheme('rose-pine')
-    end,
   })
+  vim.cmd.colorscheme('rose-pine')
 
   -- treesitter
   use({
