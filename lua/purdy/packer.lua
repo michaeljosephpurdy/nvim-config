@@ -4,6 +4,41 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use('wbthomason/packer.nvim')
 
+  -- debugger
+  use('mfussenegger/nvim-dap')
+
+  -- neotest lets us run tests straight from vim
+  use({'nvim-neotest/neotest',
+    requires = {
+      'nvim-neotest/nvim-nio',
+      'nvim-lua/plenary.nvim',
+      'antoinemadec/FixCursorHold.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-neotest/neotest-jest',
+    },
+    config = function()
+    require('neotest').setup({
+      adapters = {
+        require('neotest-jest')({
+          jestCommand = "npm test --",
+          jestConfigFile = "custom.jest.config.ts",
+          env = { CI = true },
+          cwd = function(path)
+            return vim.fn.getcwd()
+          end,
+        }),
+      }
+    })
+  end
+  })
+  -- javascript debugger, uses same DAP implementation as VSCode
+  use('mxsdev/nvim-dap-vscode-js')
+  use({
+    'microsoft/vscode-js-debug',
+    opt = true,
+    run = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out'
+  })
+
   -- telescope, provides fuzzyfinding
   use({
     'nvim-telescope/telescope.nvim',
