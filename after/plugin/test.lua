@@ -12,7 +12,8 @@ vim.keymap.set('n', '<Leader>tf', function()
     neotest.run.run(vim.fn.expand('%'))
 end, { desc = 'test entire file'})
 
-vim.keymap.set('n', '<Leader>ts', function()
-    neotest.summary()
-end, { desc = 'show test summary'})
+-- disable since it's breaking
+--vim.keymap.set('n', '<Leader>ts', function()
+    --neotest.summary()
+--end, { desc = 'show test summary'})
 
