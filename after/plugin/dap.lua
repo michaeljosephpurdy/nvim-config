@@ -1,6 +1,7 @@
-local dap = require('dap')
+local dap, dapui = require('dap'), require('dapui')
 
 -- Set keymaps to control the debugger
+vim.keymap.set('n', '<F4>', dapui.toggle)
 vim.keymap.set('n', '<F5>', dap.continue)
 vim.keymap.set('n', '<F6>', dap.step_into)
 vim.keymap.set('n', '<F7>', dap.step_over)
@@ -9,6 +10,7 @@ vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint)
 vim.keymap.set('n', '<leader>B', function()
   dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
 end)
+
 
 for _, language in pairs({ 'typescript', 'javascript' }) do
   dap.configurations[language] = {
@@ -38,3 +40,16 @@ require('dap-vscode-js').setup({
   -- log_file_level = false -- Logging level for output to file. Set to false to disable file logging.
   -- log_console_level = vim.log.levels.ERROR -- Logging level for output to console. Set to false to disable console output.
 })
+
+-- ui setup
+dapui.setup()
+
+dap.listeners.after.event_initialized['dapui_config'] = function()
+    dapui.open({})
+end
+dap.listeners.before.event_terminated['dapui_config'] = function()
+    dapui.close({})
+end
+dap.listeners.before.event_exited['dapui_config'] = function()
+    dapui.close({})
+end

@@ -6,6 +6,15 @@ return require('packer').startup(function(use)
 
   -- debugger
   use('mfussenegger/nvim-dap')
+  -- javascript debugger, uses same DAP implementation as VSCode
+  use('mxsdev/nvim-dap-vscode-js')
+  use({
+      'microsoft/vscode-js-debug',
+      opt = true,
+      run = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out'
+  })
+  -- debugger ui
+  use({"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}})
 
   -- neotest lets us run tests straight from vim
   use({'nvim-neotest/neotest',
@@ -30,13 +39,6 @@ return require('packer').startup(function(use)
       }
     })
   end
-  })
-  -- javascript debugger, uses same DAP implementation as VSCode
-  use('mxsdev/nvim-dap-vscode-js')
-  use({
-    'microsoft/vscode-js-debug',
-    opt = true,
-    run = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out'
   })
 
   -- telescope, provides fuzzyfinding
