@@ -13,9 +13,9 @@ local normal_mode = {
   -- fix escape mappings
   { '<ESC>', '' },
   { '<Space><Space>', '<ESC>' },
-  { '<leader>de', ':lua vim.diagnostic.open_float()<Enter>' },
-  { '<leader>dn', ':lua vim.diagnostic.goto_next()<Enter>' },
-  { '<leader>dp', ':lua vim.diagnostic.goto_prev()<Enter>' },
+  { '<leader>ee', ':lua vim.diagnostic.open_float()<Enter>' },
+  { '<leader>en', ':lua vim.diagnostic.goto_next()<Enter>' },
+  { '<leader>ep', ':lua vim.diagnostic.goto_prev()<Enter>' },
   -- open up netrw
   { '<Leader>pv', vim.cmd.Ex },
   -- keep focus in middle of buffer when going through search results
