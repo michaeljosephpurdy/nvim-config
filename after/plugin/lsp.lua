@@ -14,6 +14,7 @@ lsp_zero.on_attach(function(client, bufnr)
   set_lsp_keymap('o', vim.lsp.buf.type_definition, '[c]ode - jump to type definition')
   set_lsp_keymap('r', vim.lsp.buf.references, '[c]ode - list all [r]eferences')
   set_lsp_keymap('s', vim.lsp.buf.signature_help, '[c]ode - show [s]ignature')
+  require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
 end)
 
 --

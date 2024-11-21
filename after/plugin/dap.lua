@@ -1,16 +1,16 @@
-local dap, dapui = require('dap'), require('dapui')
+local dap = require('dap')
+local dapui = require('dapui')
 
 -- Set keymaps to control the debugger
 vim.keymap.set('n', '<F4>', dapui.toggle)
-vim.keymap.set('n', '<F5>', dap.continue)
-vim.keymap.set('n', '<F6>', dap.step_into)
-vim.keymap.set('n', '<F7>', dap.step_over)
-vim.keymap.set('n', '<F8>', dap.step_out)
+vim.keymap.set('n', '<F5>', dap.step_into)
+vim.keymap.set('n', '<F6>', dap.step_over)
+vim.keymap.set('n', '<F7>', dap.step_out)
+vim.keymap.set('n', '<F8>', dap.continue)
 vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint)
 vim.keymap.set('n', '<leader>B', function()
   dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
 end)
-
 
 for _, language in pairs({ 'typescript', 'javascript' }) do
   dap.configurations[language] = {

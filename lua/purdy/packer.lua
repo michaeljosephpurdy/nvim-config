@@ -16,6 +16,8 @@ return require('packer').startup(function(use)
   -- debugger ui
   use({"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}})
 
+  -- run diagnostic on entire workspace
+  use {"artemave/workspace-diagnostics.nvim"}
   -- neotest lets us run tests straight from vim
   use({'nvim-neotest/neotest',
     requires = {
@@ -24,6 +26,7 @@ return require('packer').startup(function(use)
       'antoinemadec/FixCursorHold.nvim',
       'nvim-treesitter/nvim-treesitter',
       'nvim-neotest/neotest-jest',
+      'rcasia/neotest-java', -- must run :NeotestJava setup!
     },
     config = function()
     require('neotest').setup({
@@ -35,6 +38,8 @@ return require('packer').startup(function(use)
           cwd = function(path)
             return vim.fn.getcwd()
           end,
+        }),
+        require('neotest-java')({
         }),
       }
     })
@@ -58,6 +63,11 @@ return require('packer').startup(function(use)
   use({
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
+  })
+
+  --formatter
+  use({
+    'prettier/vim-prettier',
   })
 
   use({ 'ThePrimeagen/harpoon', branch = 'harpoon2', requires = { { 'nvim-lua/plenary.nvim' } } })

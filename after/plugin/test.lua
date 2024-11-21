@@ -12,6 +12,9 @@ vim.keymap.set('n', '<Leader>tf', function()
     neotest.run.run(vim.fn.expand('%'))
 end, { desc = 'test entire file'})
 
+vim.keymap.set('n', '<Leader>tdf', function()
+    neotest.run.run({vim.fn.expand('%'), strategy = "dap"})
+end, { desc = 'debug entire file'})
 -- disable since it's breaking
 --vim.keymap.set('n', '<Leader>ts', function()
     --neotest.summary()
