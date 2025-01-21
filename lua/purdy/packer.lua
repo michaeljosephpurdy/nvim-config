@@ -64,6 +64,10 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
   })
+  -- treesitter-context (displays context of current code block)
+  use({
+      'nvim-treesitter/nvim-treesitter-context'
+  })
 
   --formatter
   use({
