@@ -34,7 +34,11 @@ local normal_mode = {
   { '<Leader>wj', '<C-w>j' }, -- move down
   { '<Leader>wh', '<C-w>h' }, -- move left
   { '<Leader>wl', '<C-w>l' }, -- move right
-  { '<Leader>wq', '<C-w>c' }, -- close split
+  { '<Leader>wq', '<C-w>c' }, -- close splitting
+  -- spellcheck
+  { '<Leader>sp', '[s' }, -- previous wrong word
+  { '<Leader>sn', ']s' }, -- next wrong word
+  { '<Leader>sf', 'z=' }, -- fix wrong word
 }
 
 local visual_mode = {
