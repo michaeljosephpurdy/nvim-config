@@ -3,6 +3,7 @@
 -- auto-command repeatedly every time a file is resourced
 local autocmd_group = vim.api.nvim_create_augroup('Custom auto-commands', { clear = true })
 
+-- Auto-formatting Lua files using `stylua`
 vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
   pattern = { '**.lua' },
   desc = 'format lua files after saving',
@@ -13,11 +14,12 @@ vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
   group = autocmd_group,
 })
 
--- spellchecking
+-- Autoset some nice-to-have options for Markdown
 vim.api.nvim_create_autocmd({'BufRead','BufNewFile'}, {
   pattern = { '*.md' },
   callback = function()
       vim.opt.spell = true
+      vim.opt.wrap = true
   end,
   group = autocmd_group,
 })
