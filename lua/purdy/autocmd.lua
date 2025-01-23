@@ -12,3 +12,12 @@ vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
   end,
   group = autocmd_group,
 })
+
+-- spellchecking
+vim.api.nvim_create_autocmd({'BufRead','BufNewFile'}, {
+  pattern = { '*.md' },
+  callback = function()
+      vim.opt.spell = true
+  end,
+  group = autocmd_group,
+})

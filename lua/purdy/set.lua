@@ -38,5 +38,3 @@ vim.opt.colorcolumn = '120'
 -- disable mouse
 vim.opt.mouse = ''
 
--- spellchecking
-vim.opt.spell = true
