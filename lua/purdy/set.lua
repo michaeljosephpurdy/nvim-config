@@ -38,3 +38,7 @@ vim.opt.colorcolumn = '120'
 -- disable mouse
 vim.opt.mouse = ''
 
+-- folding
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 99

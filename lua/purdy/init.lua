@@ -1,5 +1,4 @@
 require('purdy.autocmd')
-require('purdy.numbering')
 require('purdy.remap')
 require('purdy.packer')
 require('purdy.set')
