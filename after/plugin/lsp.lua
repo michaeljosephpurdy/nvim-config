@@ -1,4 +1,5 @@
 local lsp_zero = require('lsp-zero')
+local lsp_config = require('lspconfig')
 
 lsp_zero.on_attach(function(client, bufnr)
   local set_lsp_keymap = function(key, fn, desc)
@@ -26,57 +27,22 @@ require('mason-lspconfig').setup({
     'eslint',
     'jdtls',
   },
-  handlers = {
-    ["lua_ls"] = function ()
-        require('lspconfig').lua_ls.setup({
-            settings = {
-                Lua = {
-                    diagnostics = {
-                        globals = {'vim'}
-                    }
-                }
+})
+
+lsp_zero.default_setup()
+
+lsp_config.lua_ls.setup({
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = {'vim'}
             }
-        })
-    end,
-    ['jdtls'] = function()
-    end,
-    ['ts_ls'] = function()
-      lsp_zero.default_setup()
-    end,
-    function (server_name) -- default handler (optional)
-      lsp_zero.default_setup()
-    end,
-  },
+        }
+    }
 })
 
-require('lspconfig').jdtls.setup({
-})
+lsp_config.smithy_ls.setup({})
 
-require('lspconfig').ts_ls.setup({
-    lsp_zero.default_setup()
-})
+lsp_config.jdtls.setup({})
 
-local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
-cmp.setup({
-  sources = {
-    { name = 'path' },
-    { name = 'nvim_lsp' },
-    { name = 'nvim_lua' },
-    { name = 'luasnip', keyword_length = 2 },
-    { name = 'buffer', keyword_length = 3 },
-  },
-  formatting = lsp_zero.cmp_format({ details = false }),
-  mapping = cmp.mapping.preset.insert({
-    ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-    ['<C-Space>'] = cmp.mapping.complete(),
-  }),
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
-  },
-})
+lsp_config.ts_ls.setup({})
