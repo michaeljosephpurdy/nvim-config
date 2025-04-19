@@ -3,7 +3,7 @@ local lsp_config = require('lspconfig')
 
 lsp_zero.on_attach(function(client, bufnr)
   local set_lsp_keymap = function(key, fn, desc)
-    vim.keymap.set({ 'n', 'v' }, '<leader>c'..key, fn, { buffer = bufnr, desc = desc })
+    vim.keymap.set({ 'n', 'v' }, '<leader>c' .. key, fn, { buffer = bufnr, desc = desc })
   end
   set_lsp_keymap('a', vim.lsp.buf.code_action, '[c]ode - [a]ction')
   set_lsp_keymap('f', vim.lsp.buf.format, '[c]ode - [f]ormat')
@@ -15,7 +15,7 @@ lsp_zero.on_attach(function(client, bufnr)
   set_lsp_keymap('o', vim.lsp.buf.type_definition, '[c]ode - jump to type definition')
   set_lsp_keymap('r', vim.lsp.buf.references, '[c]ode - list all [r]eferences')
   set_lsp_keymap('s', vim.lsp.buf.signature_help, '[c]ode - show [s]ignature')
-  require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
+  require('workspace-diagnostics').populate_workspace_diagnostics(client, bufnr)
 end)
 
 --
@@ -26,23 +26,34 @@ require('mason-lspconfig').setup({
     'lua_ls',
     'eslint',
     'jdtls',
+    'clangd',
+    'pyright',
   },
 })
 
 lsp_zero.default_setup()
 
 lsp_config.lua_ls.setup({
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = {'vim'}
-            }
-        }
-    }
+  settings = {
+    Lua = {
+      workspace = {
+        preloadFileSize = 700,
+        library = {
+          '$PLAYDATE_SDK/CoreLibs/',
+        },
+      },
+      diagnostics = {
+        globals = { 'vim' },
+      },
+    },
+  },
 })
+lsp_config.clangd.setup({})
 
 lsp_config.smithy_ls.setup({})
 
 lsp_config.jdtls.setup({})
 
 lsp_config.ts_ls.setup({})
+
+lsp_config.pyright.setup({})
